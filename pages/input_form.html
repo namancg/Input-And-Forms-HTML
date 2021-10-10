@@ -44,7 +44,7 @@
         </div>
         <div class="nativeDateTimePicker">
             <label for="startDate">CHOOSE DATE AND TIME</label>
-            <input type="datetime-local" id="startDate" name="startDate">
+            <input type="date" id="startDate" name="startDate">
             <span class="validity"></span>
         </div>
         <div>
@@ -67,12 +67,21 @@
         });
         const email = document.querySelector('#email');
         const emailError = document.querySelector('.email-error');
-        email.addEventListener('input', function() {
+        email.oninput = function() {
             let emailRegex = RegExp("^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
-            if (emailRegex.test(test.value))
+            if (emailRegex.test(email.value))
                 emailError.emailContent = "";
             else emailError.emailContent = "Email is Incorrect"
-        })
+        };
+
+        const tel = document.querySelector('#tel');
+        const tel_error = document.querySelector('.tel-error');
+        tel.addEventListener('input', function() {
+        let telRegex = RegExp('^[0-9]{1,2}\\s[0-9]{10}$');
+         if(telRegex.test(tel.value))
+        tel_error.textContent = "";
+        else tel_error.textContent = "Telephone is incorrect!"
+})
 
         const salary = document.querySelector('#salary');
         const output = document.querySelector('.salary-output');
